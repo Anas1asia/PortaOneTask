@@ -1,0 +1,49 @@
+def find_unique_character(word):
+    char_count = {}
+
+    for char in word:
+        if char not in char_count:
+            char_count[char] = 1
+        else:
+            char_count[char] += 1
+
+    for char in word:
+        if char_count[char] == 1:
+            return char
+
+    return None
+
+def find_first_unique_character(characters):
+    char_count = {}
+    unique_chars = []
+
+    for char in characters:
+        if char not in char_count:
+            char_count[char] = 1
+            unique_chars.append(char)
+        else:
+            char_count[char] += 1
+            if char in unique_chars:
+                unique_chars.remove(char)
+
+    if unique_chars:
+        return unique_chars[0]
+    else:
+        return None
+
+
+text = input("Введіть текст: ")
+words = text.split()
+
+result_chars = []
+for word in words:
+    unique_char = find_unique_character(word)
+    if unique_char:
+        result_chars.append(unique_char)
+
+result = find_first_unique_character(result_chars)
+
+if result:
+    print("Перший унікальний символ:", result)
+else:
+    print("Унікальний символ не знайдено.")
